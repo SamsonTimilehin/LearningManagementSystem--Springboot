@@ -16,15 +16,7 @@ import java.util.List;
 public class LearningParty {
 
     @Id
-    @SequenceGenerator(
-            name = "learning_sequence",
-            sequenceName = "learning_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "learning_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String email;

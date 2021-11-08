@@ -75,8 +75,13 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public void deleteCourseById(Long courseId) {
-        courseService.deleteCourseById(courseId);
+    public void deleteCourseById(Long courseId, String instructorName) {
+        Instructor instructor = instructorRepository.findByLastName(instructorName);
+        Course course = courseService.findByCourseId(courseId);
+        instructor.removeCourseById(course.getCourseId());
+        courseService.deleteCourseById(course.getCourseId());
+
+        instructorRepository.save(instructor);
     }
 
 }

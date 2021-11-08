@@ -21,7 +21,7 @@ public interface InstructorService {
 
     Course updateCourse(Long courseId, CourseDto courseUpdate);
 
-    void deleteCourseById(Long courseId);
+    void deleteCourseById(Long courseId, String instructorName);
 
 
 }

@@ -4,7 +4,6 @@ import com.example.learningmanagementsystem.dto.CourseDto;
 import com.example.learningmanagementsystem.entity.Course;
 import com.example.learningmanagementsystem.entity.Instructor;
 import com.example.learningmanagementsystem.repository.CourseRepository;
-import com.example.learningmanagementsystem.repository.InstructorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +55,17 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public void deleteCourseById(Long courseId) {
+    public void deleteCourseById(Long courseId, CourseDto courseDto) {
          courseRepository.deleteById(courseId);
+    }
+
+    @Override
+    public Course findByCourseId(Long courseId) {
+        return courseRepository.findById(courseId).get();
+    }
+
+    @Override
+    public void deleteCourseById(Long courseId) {
+        courseRepository.deleteById(courseId);
     }
 }

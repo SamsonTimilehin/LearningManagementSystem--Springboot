@@ -29,8 +29,8 @@ public class CourseController {
     }
 
     @DeleteMapping("/{courseId}")
-    public String deleteCourseById(@PathVariable("courseId") Long courseId){
-        instructorService.deleteCourseById(courseId);
+    public String deleteCourseById(@PathVariable("courseId") Long courseId, @RequestBody CourseDto courseDto){
+        instructorService.deleteCourseById(courseId, courseDto.getInstructorName());
         return "Course with id" + courseId + " is successfully deleted";
     }
 }
