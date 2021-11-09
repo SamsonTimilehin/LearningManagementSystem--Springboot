@@ -23,5 +23,7 @@ public interface InstructorService {
 
     void deleteCourseById(Long courseId, String instructorName);
 
+    List<Course> getCourses(String title);
+
 
 }

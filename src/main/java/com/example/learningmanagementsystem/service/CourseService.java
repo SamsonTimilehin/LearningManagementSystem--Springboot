@@ -3,6 +3,8 @@ package com.example.learningmanagementsystem.service;
 import com.example.learningmanagementsystem.dto.CourseDto;
 import com.example.learningmanagementsystem.entity.Course;
 
+import java.util.List;
+
 public interface CourseService {
 
     Course saveCourse(CourseDto courseDto);
@@ -14,4 +16,6 @@ public interface CourseService {
     Course findByCourseId(Long courseId);
 
     void deleteCourseById(Long courseId);
+
+    List<Course> getCoursesByTitle(String title);
 }

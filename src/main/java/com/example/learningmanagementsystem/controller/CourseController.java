@@ -7,6 +7,8 @@ import com.example.learningmanagementsystem.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -31,6 +33,11 @@ public class CourseController {
     @DeleteMapping("/{courseId}")
     public String deleteCourseById(@PathVariable("courseId") Long courseId, @RequestBody CourseDto courseDto){
         instructorService.deleteCourseById(courseId, courseDto.getInstructorName());
-        return "Course with id" + courseId + " is successfully deleted";
+        return "Course with id " + courseId + " is successfully deleted";
+    }
+
+    @GetMapping("/search")
+    public List<Course> getCourses(@RequestParam String title){
+       return instructorService.getCourses(title);
     }
 }

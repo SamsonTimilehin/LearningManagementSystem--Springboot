@@ -8,6 +8,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
 @Service
 public class CourseServiceImpl implements CourseService{
 
@@ -49,7 +54,9 @@ public class CourseServiceImpl implements CourseService{
         modelMapper.map(courseUpdate, courseDB);
         courseRepository.save(courseDB);
 
-
+        if(courseUpdate.isPublished()){
+            courseDB.setDatePublished(LocalDate.now());
+        }
 
         return courseDB;
     }
@@ -67,5 +74,17 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void deleteCourseById(Long courseId) {
         courseRepository.deleteById(courseId);
+    }
+
+    @Override
+    public List<Course> getCoursesByTitle(String title) {
+
+        return courseRepository.findAll().stream()
+                .filter(course -> {
+                    String savedCourseTitle = course.getCourseTitle().toLowerCase();
+                    String searchTitle = title.toLowerCase();
+                    return course.isPublished() && savedCourseTitle.contains(searchTitle);
+                })
+                .collect(Collectors.toList());
     }
 }

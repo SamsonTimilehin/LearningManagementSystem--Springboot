@@ -84,4 +84,10 @@ public class InstructorServiceImpl implements InstructorService{
         instructorRepository.save(instructor);
     }
 
+    @Override
+    public List<Course> getCourses(String title) {
+
+        return courseService.getCoursesByTitle(title);
+    }
+
 }
