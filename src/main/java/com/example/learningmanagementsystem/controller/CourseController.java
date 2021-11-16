@@ -37,7 +37,7 @@ public class CourseController {
     }
 
     @GetMapping("/search")
-    public List<Course> getCourses(@RequestParam String title){
-       return instructorService.getCourses(title);
+    public List<Course> getCourses(@RequestParam String courseTitle){
+       return instructorService.getCourses(courseTitle);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.learningmanagementsystem.controller;
 
 import com.example.learningmanagementsystem.dto.CourseDto;
-import com.example.learningmanagementsystem.dto.InstructorDTO;
 import com.example.learningmanagementsystem.entity.Course;
 import com.example.learningmanagementsystem.entity.Instructor;
 import com.example.learningmanagementsystem.service.InstructorService;
@@ -45,5 +44,8 @@ public class InstructorController {
 
       return instructorService.createCourse(courseDto);
     }
-
+    @PostMapping("/publishCourse/{id}")
+   public Course publishCourse(@PathVariable Long id, @RequestBody String courseTitle){
+        return instructorService.publishCourse(id);
+   }
 }

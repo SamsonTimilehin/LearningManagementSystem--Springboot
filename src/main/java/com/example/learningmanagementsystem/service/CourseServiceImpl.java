@@ -77,14 +77,10 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public List<Course> getCoursesByTitle(String title) {
+    public List<Course> getCoursesByTitle(String courseTitle) {
 
-        return courseRepository.findAll().stream()
-                .filter(course -> {
-                    String savedCourseTitle = course.getCourseTitle().toLowerCase();
-                    String searchTitle = title.toLowerCase();
-                    return course.isPublished() && savedCourseTitle.contains(searchTitle);
-                })
-                .collect(Collectors.toList());
+       List<Course> courses = courseRepository.findAllByCourseTitle(courseTitle);
+
+        return courses;
     }
 }

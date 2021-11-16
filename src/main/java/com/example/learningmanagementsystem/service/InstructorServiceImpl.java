@@ -1,23 +1,18 @@
 package com.example.learningmanagementsystem.service;
 
 import com.example.learningmanagementsystem.dto.CourseDto;
-import com.example.learningmanagementsystem.dto.InstructorDTO;
 import com.example.learningmanagementsystem.entity.Course;
 import com.example.learningmanagementsystem.entity.Instructor;
 import com.example.learningmanagementsystem.repository.CourseRepository;
 import com.example.learningmanagementsystem.repository.InstructorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 
 @Service
@@ -85,9 +80,17 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public List<Course> getCourses(String title) {
+    public List<Course> getCourses(String courseTitle) {
 
-        return courseService.getCoursesByTitle(title);
+        return courseService.getCoursesByTitle(courseTitle);
+    }
+
+    @Override
+    public Course publishCourse(Long id, String courseTitle) {
+        Instructor instructorDB = instructorRepository.findById(id).get();
+        instructorDB.getCourses().stream()
+                .filter(val -> val.getCourseTitle().equals(courseTitle));
+        return null;
     }
 
 }

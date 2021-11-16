@@ -10,5 +10,11 @@ public interface StudentService {
 
     List<Student> getAllStudents();
 
+    Student findByStudentId(Long id);
 
+    void enroll(Long studentId, Long courseId);
+
+    void unEnroll(Long studentId, Long courseId);
+
+    Student findStudentByUsername(String username);
 }
