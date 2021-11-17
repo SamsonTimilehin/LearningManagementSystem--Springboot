@@ -25,6 +25,6 @@ public class LearningParty {
     private boolean enabled;
     @CreationTimestamp
     private LocalDateTime dateCreated;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Authority> authorities;
 }

@@ -46,6 +46,6 @@ public class InstructorController {
     }
     @PostMapping("/publishCourse/{id}")
    public Course publishCourse(@PathVariable Long id, @RequestBody String courseTitle){
-        return instructorService.publishCourse(id);
+        return instructorService.publishCourse(id,courseTitle);
    }
 }

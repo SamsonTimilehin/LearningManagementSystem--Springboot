@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 
 @Service
@@ -88,8 +88,9 @@ public class InstructorServiceImpl implements InstructorService{
     @Override
     public Course publishCourse(Long id, String courseTitle) {
         Instructor instructorDB = instructorRepository.findById(id).get();
-        instructorDB.getCourses().stream()
-                .filter(val -> val.getCourseTitle().equals(courseTitle));
+        List<Course> result = instructorDB.getCourses().stream()
+                .filter(val -> val.getCourseTitle().equals(courseTitle)).collect(Collectors.toList());
+
         return null;
     }
 

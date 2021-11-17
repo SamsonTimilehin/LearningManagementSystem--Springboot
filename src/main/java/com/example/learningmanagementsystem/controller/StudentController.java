@@ -29,6 +29,7 @@ public class StudentController {
     public Student getStudentById(@PathVariable Long id){
         return studentService.findByStudentId(id);
     }
+
     @PutMapping("/{username}/enroll")
     public String enrollStudentForCourse(@PathVariable("username") String username, @RequestParam Long courseId){
 
