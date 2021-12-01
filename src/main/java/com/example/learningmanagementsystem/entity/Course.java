@@ -20,25 +20,36 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseId;
+
     @Column(nullable = false)
     private String courseTitle;
+
     @CreationTimestamp
     private LocalDate dateCreated;
+
     private LocalDate datePublished;
+
     @UpdateTimestamp
     private LocalDate updatedAt;
+
     private boolean isPublished;
+
     private String duration;
+
     @Column(length = 1000)
     private String description;
+
     @ElementCollection
     private List<String> imageUrls;
 
     private String language;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JsonIgnore
     private Instructor instructor;
-    @ManyToMany
+
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Student> students = new ArrayList<>();
 
     public void addStudent(Student student) {

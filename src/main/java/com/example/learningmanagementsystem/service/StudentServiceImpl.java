@@ -1,11 +1,15 @@
 package com.example.learningmanagementsystem.service;
 
+import com.example.learningmanagementsystem.dto.StudentDto;
 import com.example.learningmanagementsystem.entity.Course;
+import com.example.learningmanagementsystem.entity.Gender;
 import com.example.learningmanagementsystem.entity.Student;
 import com.example.learningmanagementsystem.repository.StudentRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -16,8 +20,18 @@ public class StudentServiceImpl implements StudentService{
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
-    public Student createStudent(Student student) {
+    public Student createStudent(StudentDto studentDto) {
+
+        if(studentDto == null){
+            throw new IllegalArgumentException("Student Can't be null");
+        }
+        Student student;
+        student = modelMapper.map(studentDto, Student.class);
+
         return studentRepository.save(student);
     }
 

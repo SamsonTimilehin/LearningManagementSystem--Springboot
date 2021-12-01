@@ -1,5 +1,6 @@
 package com.example.learningmanagementsystem.controller;
 
+import com.example.learningmanagementsystem.dto.StudentDto;
 import com.example.learningmanagementsystem.entity.Student;
 import com.example.learningmanagementsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student){
+    public Student createStudent(@RequestBody StudentDto studentDto){
 
-        return studentService.createStudent(student);
+        return studentService.createStudent(studentDto);
     }
 
     @GetMapping

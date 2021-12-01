@@ -88,10 +88,10 @@ public class InstructorServiceImpl implements InstructorService{
     @Override
     public Course publishCourse(Long id, String courseTitle) {
         Instructor instructorDB = instructorRepository.findById(id).get();
-        List<Course> result = instructorDB.getCourses().stream()
-                .filter(val -> val.getCourseTitle().equals(courseTitle)).collect(Collectors.toList());
-
-        return null;
+       Course courseToPublish =instructorDB.getCourses().stream()
+                .filter(val -> val.getCourseTitle().equals(courseTitle)).findFirst().get();
+        courseToPublish.setPublished(true);
+        return courseToPublish;
     }
 
 }

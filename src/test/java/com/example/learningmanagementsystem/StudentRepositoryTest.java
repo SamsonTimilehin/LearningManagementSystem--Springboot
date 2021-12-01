@@ -1,6 +1,7 @@
-package com.example.learningmanagementsystem.repository;
+package com.example.learningmanagementsystem;
 
 import com.example.learningmanagementsystem.entity.Student;
+import com.example.learningmanagementsystem.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

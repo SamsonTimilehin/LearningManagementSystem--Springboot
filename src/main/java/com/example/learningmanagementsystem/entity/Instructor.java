@@ -25,11 +25,8 @@ public class Instructor {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private String specialization;
-    @Column(length = 1000)
-    private String bio;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private LearningParty learningParty;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Course> courses = new ArrayList<>();
